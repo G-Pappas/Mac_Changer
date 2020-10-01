@@ -1,5 +1,6 @@
 #!/usr/bin/env Python
 import subprocess
+import re
 
 
 def ask_for_input():
@@ -17,6 +18,13 @@ def change_mac():
     subprocess.call(["ifconfig", ask_for_input.inter_name, "hw", "ether", ask_for_input.new_mac])
     # After making the changes I want turn the interface up again.
     subprocess.call(["ifconfig", ask_for_input.inter_name, "up"])
+
+
+# Print new mac address to the user
+def print_new_mac():
+    ifconfig_result = subprocess.check_output(["ifconfig"])
+    my_new_mac_address = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", str(ifconfig_result))
+    print("MAC address successfully changed to: ", my_new_mac_address.group(0))
 
 
 # Function to reset mac value to default state.
@@ -38,6 +46,7 @@ def user_greet():
     if user_choice == "1":
         ask_for_input()
         change_mac()
+        print_new_mac()
     elif user_choice == "2":
         reset_mac()
     else:
