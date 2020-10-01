@@ -1,7 +1,7 @@
 
 TO DO LIST:
-[]Check if the interface user added exists.
-[]Check if MAC address is valid.
+[X]Check if the interface user added exists.
+[X]Check if MAC address is valid.
 [Χ]Add reset to default function
 [Χ]User can't hijack commands
 [X]Added navigation menu
