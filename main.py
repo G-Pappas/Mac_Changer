@@ -5,9 +5,29 @@ import re
 
 def ask_for_input():
     # Ask user which interface he want to interact with.
-    ask_for_input.inter_name = str(input("Enter interface name to interact:\n "))
+    user_interface_input = str(input("Enter interface name to interact:\n "))
+
+    # Check if the interface user added exists.
+    interface_check = re.search(r"\w\w\w\w", user_interface_input)
+    if interface_check:
+        ask_for_input.inter_name = user_interface_input
+    else:
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("~Interface is wrong, please try again.~")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        ask_for_input()
+
     # Ask user for mac address.
-    ask_for_input.new_mac = str(input("Enter new mac address:\n "))
+    user_mac_input = str(input("Enter new mac address:\n "))
+
+    # Check if MAC address has a valid format.
+    mac_check = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", user_mac_input)
+    if mac_check:
+        ask_for_input.new_mac = user_mac_input
+    else:
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("~Wrong MAC Address format, please try again.~")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 
 # Function to change the mac address.
